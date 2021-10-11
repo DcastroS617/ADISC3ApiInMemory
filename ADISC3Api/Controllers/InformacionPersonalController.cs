@@ -20,6 +20,17 @@ namespace ADISC3Api.Models
             _context = context;
         }
 
+        [Route("Login")]
+        [HttpPost]
+        public async Task<ActionResult<InformacionPersonal>> Login(InformacionPersonal informacionPersonal)
+        {
+            var cedula = await _context.InformacionPersonal.AnyAsync(x => x.Cedula == informacionPersonal.Cedula);
+            var nombre = await _context.InformacionPersonal.AnyAsync(x => x.Nombre == informacionPersonal.Nombre); 
+            if (cedula && nombre) return NoContent();
+            return NotFound();
+
+        }
+
         //GET INFORMACION PERSONAL
         [HttpGet]
         public async Task<ActionResult<IEnumerable<InformacionPersonal>>> getInformacionPersonal()

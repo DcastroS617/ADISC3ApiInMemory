@@ -35,7 +35,7 @@ namespace ADISC3Api
                 .AllowAnyMethod()));
             services.AddDbContext<InMemoryContext>(context =>
             context.UseInMemoryDatabase("InMemory"));
-            //services.AddDbContext<DbSQLContext>(options =>
+            //services.AddDbContext<SQLDbContext>(options =>
             //options.UseSqlServer(Configuration.GetConnectionString("ConexionSQL")));//Inyeccion de dependencia bd
             services.AddControllers();
             
