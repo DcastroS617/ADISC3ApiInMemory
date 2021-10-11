@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADISC3Api.Migrations
 {
     [DbContext(typeof(SQLDbContext))]
-    [Migration("20211009200853_InformacionLaboral")]
-    partial class InformacionLaboral
+    [Migration("20211011214229_MigracionMasiva")]
+    partial class MigracionMasiva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,78 @@ namespace ADISC3Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaComplementaria", b =>
+                {
+                    b.Property<int>("IdInformacionAcademicaComplementaria")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Acreditacion")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("FechaGraduacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Institucion")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("IdInformacionAcademicaComplementaria");
+
+                    b.ToTable("InformacionAcademicaComplementaria");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaFormal", b =>
+                {
+                    b.Property<int>("IdInformacionAcademica")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Acreditacion")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<DateTime>("FechaGraduacion")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Institucion")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("IdInformacionAcademica");
+
+                    b.ToTable("InformacionAcademicaFormal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaIdioma", b =>
+                {
+                    b.Property<int>("IdInformacionAcademica")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Idioma")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Nivel")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IdInformacionAcademica");
+
+                    b.ToTable("InformacionAcademicaIdioma");
+                });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionContacto", b =>
                 {
@@ -133,6 +205,11 @@ namespace ADISC3Api.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Contrasena")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");

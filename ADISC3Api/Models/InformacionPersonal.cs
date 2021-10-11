@@ -69,6 +69,12 @@ namespace ADISC3Api.Models
         [StringLength(maximumLength: 50, ErrorMessage = "Se necesita un minimo de 3 y maximo de 50 carácteres", MinimumLength = 3)]
         [Display(Name = "Banco")]
         public string BancoEspecifico { get; set; }
+
+        [Required(ErrorMessage = "Se debe introducir la contraseña")]
+        [StringLength(maximumLength: 50, ErrorMessage = "Se necesita un minimo de 3 y maximo de 50 carácteres", MinimumLength = 3)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Contraseña")]
+        public string Contrasena { get; set; }
         public InformacionPersonal() { }
     }
 }

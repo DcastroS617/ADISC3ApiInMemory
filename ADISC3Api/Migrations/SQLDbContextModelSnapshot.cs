@@ -207,6 +207,11 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Contrasena")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("CuentaBancaria")
                         .IsRequired()
                         .HasMaxLength(50)
