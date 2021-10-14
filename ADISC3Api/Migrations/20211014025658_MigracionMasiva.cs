@@ -124,6 +124,20 @@ namespace ADISC3Api.Migrations
                 {
                     table.PrimaryKey("PK_InformacionPersonal", x => x.IdInfoPersonal);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Login",
+                columns: table => new
+                {
+                    IdLogin = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Cedula = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Contrasena = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Login", x => x.IdLogin);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -148,6 +162,9 @@ namespace ADISC3Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "InformacionPersonal");
+
+            migrationBuilder.DropTable(
+                name: "Login");
         }
     }
 }

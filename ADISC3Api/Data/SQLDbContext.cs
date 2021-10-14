@@ -29,5 +29,6 @@ namespace ADISC3Api.Data
         public DbSet<InformacionAcademicaFormal> InformacionAcademicaFormal { get; set; }
         public DbSet<InformacionAcademicaComplementaria> InformacionAcademicaComplementaria { get; set; }
         public DbSet<InformacionAcademicaIdioma> InformacionAcademicaIdioma { get; set; }
+        public DbSet<Login> Login { get; set; }
     }
 }

@@ -13,8 +13,8 @@ namespace ADISC3Api.Controllers
     [ApiController]
     public class InformacionAcademicaFormalController : ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionAcademicaFormalController(InMemoryContext context)
+        private readonly SQLDbContext _context;
+        public InformacionAcademicaFormalController(SQLDbContext context)
         {
             _context = context;
         }

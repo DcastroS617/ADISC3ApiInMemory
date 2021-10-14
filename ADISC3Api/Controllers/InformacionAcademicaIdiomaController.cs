@@ -14,8 +14,8 @@ namespace ADISC3Api.Controllers
     [ApiController]
     public class InformacionAcademicaIdiomaController : ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionAcademicaIdiomaController(InMemoryContext context)
+        private readonly SQLDbContext _context;
+        public InformacionAcademicaIdiomaController(SQLDbContext context)
         {
             _context = context;
         }
