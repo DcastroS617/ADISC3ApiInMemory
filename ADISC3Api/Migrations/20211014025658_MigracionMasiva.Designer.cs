@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADISC3Api.Migrations
 {
     [DbContext(typeof(SQLDbContext))]
-    [Migration("20211011214229_MigracionMasiva")]
+    [Migration("20211014025658_MigracionMasiva")]
     partial class MigracionMasiva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -255,6 +255,28 @@ namespace ADISC3Api.Migrations
                     b.HasKey("IdInfoPersonal");
 
                     b.ToTable("InformacionPersonal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.Login", b =>
+                {
+                    b.Property<int>("IdLogin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Contrasena")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IdLogin");
+
+                    b.ToTable("Login");
                 });
 #pragma warning restore 612, 618
         }

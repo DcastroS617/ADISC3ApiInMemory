@@ -14,20 +14,27 @@ namespace ADISC3Api.Models
     [ApiController]  
     public class InformacionPersonalController : ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionPersonalController(InMemoryContext context) 
+        private readonly SQLDbContext _context;
+        public InformacionPersonalController(SQLDbContext context) 
         {
             _context = context;
         }
 
         [Route("Login")]
         [HttpPost]
-        public async Task<ActionResult<InformacionPersonal>> Login(InformacionPersonal informacionPersonal)
+        public async Task<ActionResult<InformacionPersonal>> Login(Login login)
         {
-            var cedula = await _context.InformacionPersonal.AnyAsync(x => x.Cedula == informacionPersonal.Cedula);
-            var contra = await _context.InformacionPersonal.AnyAsync(x => x.Contrasena == informacionPersonal.Contrasena); 
-            if (cedula && contra) return NoContent();
-            return NotFound();
+            var cedula = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
+            var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena); 
+            if (!cedula && !contra) return NotFound();//si sirve!!
+            return CreatedAtAction(nameof(GetLogin), new { id = login.IdLogin }, login);
+        }
+
+        [Route("GetLogin")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Login>>> GetLogin()
+        {
+            return await _context.Login.Select(info => info).ToListAsync();
         }
 
         //GET INFORMACION PERSONAL
@@ -41,7 +48,9 @@ namespace ADISC3Api.Models
         [HttpPost]
         public async Task<ActionResult<InformacionPersonal>> PostInformacionPersonal(InformacionPersonal informacionPersonal)
         {
+            var login = new Login() { Cedula = informacionPersonal.Cedula, Contrasena = informacionPersonal.Contrasena };
             _context.InformacionPersonal.Add(informacionPersonal);
+            _context.Login.Add(login);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(getInformacionPersonal), new { id = informacionPersonal.IdInfoPersonal }, informacionPersonal);
         }

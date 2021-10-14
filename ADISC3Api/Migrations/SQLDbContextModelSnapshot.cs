@@ -254,6 +254,28 @@ namespace ADISC3Api.Migrations
 
                     b.ToTable("InformacionPersonal");
                 });
+
+            modelBuilder.Entity("ADISC3Api.Models.Login", b =>
+                {
+                    b.Property<int>("IdLogin")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Cedula")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Contrasena")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IdLogin");
+
+                    b.ToTable("Login");
+                });
 #pragma warning restore 612, 618
         }
     }
