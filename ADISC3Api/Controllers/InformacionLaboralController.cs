@@ -13,8 +13,8 @@ namespace ADISC3Api
     [ApiController]
     public class InformacionLaboralController :ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionLaboralController(InMemoryContext context)
+        private readonly SQLDbContext _context;
+        public InformacionLaboralController(SQLDbContext context)
         {
             _context = context;
         }

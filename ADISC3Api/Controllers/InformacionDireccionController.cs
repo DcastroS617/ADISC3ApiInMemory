@@ -13,8 +13,8 @@ namespace ADISC3Api
     [ApiController]
     public class InformacionDireccionController : ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionDireccionController(InMemoryContext context)
+        private readonly SQLDbContext _context;
+        public InformacionDireccionController(SQLDbContext context)
         {
             _context = context;
         }

@@ -13,8 +13,8 @@ namespace ADISC3Api.Controllers
     [ApiController]
     public class InformacionContactoController : ControllerBase
     {
-        public readonly InMemoryContext _context;
-        public InformacionContactoController(InMemoryContext context)
+        public readonly SQLDbContext _context;
+        public InformacionContactoController(SQLDbContext context)
         {
             _context = context;
         }
