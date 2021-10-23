@@ -14,8 +14,8 @@ namespace ADISC3Api.Models
     [ApiController]  
     public class InformacionPersonalController : ControllerBase
     {
-        private readonly InMemoryContext _context;
-        public InformacionPersonalController(InMemoryContext context) 
+        private readonly SQLDbContext _context;
+        public InformacionPersonalController(SQLDbContext context) 
         {
             _context = context;
         }
@@ -25,9 +25,9 @@ namespace ADISC3Api.Models
         public async Task<ActionResult<InformacionPersonal>> Login(Login login)
         {
             var cedula = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
-            var contra = await _context.InformacionPersonal.AnyAsync(x => x.Contrasena == login.Contrasena); 
-            if (cedula && contra) return NoContent();//si sirve!!
-            return NotFound();
+            var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena); 
+            if (!cedula && !contra) return NotFound();//si sirve!!
+            return CreatedAtAction(nameof(GetLogin), new { id = login.IdLogin }, login);
         }
 
         [Route("GetLogin")]

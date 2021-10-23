@@ -33,10 +33,10 @@ namespace ADISC3Api
                 builder => builder.SetIsOriginAllowed(uri => new Uri(uri).Host == "localhost")
                 .AllowAnyHeader()
                 .AllowAnyMethod()));
-            services.AddDbContext<InMemoryContext>(context =>
-            context.UseInMemoryDatabase("InMemory"));
-            //services.AddDbContext<SQLDbContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("ConexionSQL")));//Inyeccion de dependencia bd
+            //services.AddDbContext<InMemoryContext>(context =>
+            //context.UseInMemoryDatabase("InMemory"));
+            services.AddDbContext<SQLDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("ConexionSQL")));//Inyeccion de dependencia bd
             services.AddControllers();
             
         }
