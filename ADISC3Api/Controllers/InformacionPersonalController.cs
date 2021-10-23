@@ -34,16 +34,6 @@ namespace ADISC3Api.Models
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Login>>> GetLogin()
         {
-            var cedula = await _context.InformacionPersonal.AnyAsync(x => x.Cedula == informacionPersonal.Cedula);
-            var contra = await _context.InformacionPersonal.AnyAsync(x => x.Contrasena == informacionPersonal.Contrasena); 
-            if (cedula && contra) return NoContent();
-            return NotFound();
-        }
-
-        [Route("GetLogin")]
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Login>>> GetLogin()
-        {
             return await _context.Login.Select(info => info).ToListAsync();
         }
 
