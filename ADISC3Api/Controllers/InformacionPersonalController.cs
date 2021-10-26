@@ -26,8 +26,9 @@ namespace ADISC3Api.Models
         {
             var cedula = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
             var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena); 
-            if (!cedula && !contra) return NotFound();//si sirve!!
-            return CreatedAtAction(nameof(GetLogin), new { id = login.IdLogin }, login);
+            if (cedula && contra) return NoContent();
+            //return CreatedAtAction(nameof(GetLogin), new { id = login.IdLogin }, login);
+            return NotFound();
         }
 
         [Route("GetLogin")]
