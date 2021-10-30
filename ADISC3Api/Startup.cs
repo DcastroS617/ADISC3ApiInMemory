@@ -18,6 +18,7 @@ namespace ADISC3Api
 {
     public class StartUp
     {
+        
         public readonly string _MyCors = "ADISC3ApiCORS";
         public StartUp(IConfiguration configuration)
         {
