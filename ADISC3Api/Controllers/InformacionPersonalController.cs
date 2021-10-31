@@ -15,43 +15,22 @@ namespace ADISC3Api.Models
     public class InformacionPersonalController : ControllerBase
     {
         private readonly SQLDbContext _context;
+
         public InformacionPersonalController(SQLDbContext context)
         {
             _context = context;
         }
-        [HttpGet("{Cedula}")]
-        public async Task<ActionResult<InformacionPersonal>> BuscarPersona(string cedula)
-        {
-            var persona = from p in _context.InformacionPersonal select p;
-            if (!String.IsNullOrEmpty(cedula))
-            {
-                persona = persona.Where(p => p.Cedula.Contains(cedula));
-            }
-            await persona.ToListAsync();
-            foreach (var i in persona)
-            {
-                if (i.Cedula == cedula)
-                {
-                    var SendIt = await _context.InformacionPersonal.FindAsync(i.IdInfoPersonal);
-                    return Ok(SendIt);
-                }
-            }
-            return NotFound();
-        }
+
         [Route("Login")]
         [HttpPost]
         public async Task<ActionResult<InformacionPersonal>> Login(Login login)
         {           
             var cedula = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
-            var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena);
-            //var obj = BuscarPersona(cedula);
+            var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena);           
             if (cedula && contra) 
-            {
-                ////var obj = await _context.Login.FindAsync(login.IdLogin);
-                //VariablesGlobales.IdGlobal = obj.IdLogin;
+            {               
                 return NoContent();
             }
-            //return CreatedAtAction(nameof(GetLogin), new { id = login.IdLogin }, login);
             return NotFound();
         }
 
@@ -81,13 +60,13 @@ namespace ADISC3Api.Models
         }
 
         //GET BY ID INFORMACION PERSONAL
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<InformacionPersonal>> GetInformacionPersonal(int id)
-        //{
-        //    var persona = await _context.InformacionPersonal.FindAsync(id);
-        //    if (persona == null) return NotFound();
-        //    return persona;
-        //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<InformacionPersonal>> GetInformacionPersonal(int id)
+        {
+            var persona = await _context.InformacionPersonal.FindAsync(id);
+            if (persona == null) return NotFound();
+            return persona;
+        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInformacionPersonal(int id, InformacionPersonal informacionPersonal)
@@ -111,6 +90,7 @@ namespace ADISC3Api.Models
             }
             return NoContent();
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteInformacionPersonal(int id)
         {
