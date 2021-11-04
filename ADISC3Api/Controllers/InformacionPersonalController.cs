@@ -1,4 +1,5 @@
 using ADISC3Api.Data;
+using ADISC3Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ADISC3Api.Models
+namespace ADISC3Api.Controllers
 {
     [Route("api/InformacionPersonal")]
     [ApiController]

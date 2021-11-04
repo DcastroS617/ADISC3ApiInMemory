@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADISC3Api.Migrations
 {
     [DbContext(typeof(SQLDbContext))]
-    [Migration("20211014025658_MigracionMasiva")]
+    [Migration("20211102002141_MigracionMasiva")]
     partial class MigracionMasiva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

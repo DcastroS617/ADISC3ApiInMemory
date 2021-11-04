@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ADISC3Api
+namespace ADISC3Api.Controllers
 {
     [Route("api/InfoDireccion")]
     [ApiController]
