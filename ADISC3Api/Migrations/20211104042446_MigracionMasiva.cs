@@ -11,7 +11,7 @@ namespace ADISC3Api.Migrations
                 name: "InformacionAcademicaComplementaria",
                 columns: table => new
                 {
-                    IdInformacionAcademicaComplementaria = table.Column<int>(type: "int", nullable: false)
+                    IdInformacionAcademicaComp = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Institucion = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Acreditacion = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
@@ -19,14 +19,14 @@ namespace ADISC3Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InformacionAcademicaComplementaria", x => x.IdInformacionAcademicaComplementaria);
+                    table.PrimaryKey("PK_InformacionAcademicaComplementaria", x => x.IdInformacionAcademicaComp);
                 });
 
             migrationBuilder.CreateTable(
                 name: "InformacionAcademicaFormal",
                 columns: table => new
                 {
-                    IdInformacionAcademica = table.Column<int>(type: "int", nullable: false)
+                    IdInformacionAcademicaFormal = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Institucion = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Acreditacion = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
@@ -34,21 +34,21 @@ namespace ADISC3Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InformacionAcademicaFormal", x => x.IdInformacionAcademica);
+                    table.PrimaryKey("PK_InformacionAcademicaFormal", x => x.IdInformacionAcademicaFormal);
                 });
 
             migrationBuilder.CreateTable(
                 name: "InformacionAcademicaIdioma",
                 columns: table => new
                 {
-                    IdInformacionAcademica = table.Column<int>(type: "int", nullable: false)
+                    IdInformacionAcademicaIdioma = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Idioma = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Nivel = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InformacionAcademicaIdioma", x => x.IdInformacionAcademica);
+                    table.PrimaryKey("PK_InformacionAcademicaIdioma", x => x.IdInformacionAcademicaIdioma);
                 });
 
             migrationBuilder.CreateTable(

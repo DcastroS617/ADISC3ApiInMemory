@@ -9,7 +9,7 @@ namespace ADISC3Api.Models
     {
         public InformacionAcademicaIdioma() { }
         [Key]
-        public int IdInformacionAcademica { get; set; }
+        public int IdInformacionAcademicaIdioma { get; set; }
 
         [Required(ErrorMessage = "Se debe introducir el nombre del idioma")]
         [StringLength(maximumLength: 30, ErrorMessage = "Se necesita un minimo de 3 y maximo de 30 carácteres", MinimumLength = 3)]

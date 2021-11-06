@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ADISC3Api.Migrations
 {
     [DbContext(typeof(SQLDbContext))]
-    [Migration("20211102002141_MigracionMasiva")]
+    [Migration("20211104042446_MigracionMasiva")]
     partial class MigracionMasiva
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace ADISC3Api.Migrations
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaComplementaria", b =>
                 {
-                    b.Property<int>("IdInformacionAcademicaComplementaria")
+                    b.Property<int>("IdInformacionAcademicaComp")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -41,14 +41,14 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("IdInformacionAcademicaComplementaria");
+                    b.HasKey("IdInformacionAcademicaComp");
 
                     b.ToTable("InformacionAcademicaComplementaria");
                 });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaFormal", b =>
                 {
-                    b.Property<int>("IdInformacionAcademica")
+                    b.Property<int>("IdInformacionAcademicaFormal")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -66,14 +66,14 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("IdInformacionAcademica");
+                    b.HasKey("IdInformacionAcademicaFormal");
 
                     b.ToTable("InformacionAcademicaFormal");
                 });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaIdioma", b =>
                 {
-                    b.Property<int>("IdInformacionAcademica")
+                    b.Property<int>("IdInformacionAcademicaIdioma")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -88,7 +88,7 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("IdInformacionAcademica");
+                    b.HasKey("IdInformacionAcademicaIdioma");
 
                     b.ToTable("InformacionAcademicaIdioma");
                 });
