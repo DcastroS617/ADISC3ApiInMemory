@@ -9,7 +9,7 @@ namespace ADISC3Api.Models
     {
         public InformacionAcademicaFormal() { }
         [Key]
-        public int IdInformacionAcademica { get; set; }
+        public int IdInformacionAcademicaFormal { get; set; }
 
         [Required(ErrorMessage = "Se debe introducir el nombre de la institución")]
         [StringLength(maximumLength: 25, ErrorMessage = "Se necesita un minimo de 3 y maximo de 25 carácteres", MinimumLength = 3)]

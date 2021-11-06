@@ -38,13 +38,13 @@ namespace ADISC3Api.Controllers
         {
             _context.InformacionAcademicaFormal.Add(informacionAcademicaFormal);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetInfoAcademicaFormal), new { id = informacionAcademicaFormal.IdInformacionAcademica }, informacionAcademicaFormal);
+            return CreatedAtAction(nameof(GetInfoAcademicaFormal), new { id = informacionAcademicaFormal.IdInformacionAcademicaFormal }, informacionAcademicaFormal);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInformacionAcademicaFormal(int id, InformacionAcademicaFormal informacionAcademicaFormal)
         {
-            if (id != informacionAcademicaFormal.IdInformacionAcademica) return BadRequest();
+            if (id != informacionAcademicaFormal.IdInformacionAcademicaFormal) return BadRequest();
             _context.Entry(informacionAcademicaFormal).State = EntityState.Modified;
             try
             {
@@ -56,6 +56,15 @@ namespace ADISC3Api.Controllers
             }
             return NoContent();
         }
-        private bool BuscarInformacionAcademicaFormal(int id) { return _context.InformacionAcademicaFormal.Any(info => id == info.IdInformacionAcademica); }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteInformacionAcademicaFormal(int id)
+        {
+            var info = await _context.InformacionAcademicaFormal.FindAsync(id);
+            if (info == null) return NotFound();
+            _context.InformacionAcademicaFormal.Remove(info);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        private bool BuscarInformacionAcademicaFormal(int id) { return _context.InformacionAcademicaFormal.Any(info => id == info.IdInformacionAcademicaFormal); }
     }
 }
