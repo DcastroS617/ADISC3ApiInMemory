@@ -38,13 +38,13 @@ namespace ADISC3Api.Controllers
         {
             _context.InformacionAcademicaFormal.Add(informacionAcademicaFormal);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetInfoAcademicaFormal), new { id = informacionAcademicaFormal.IdInformacionAcademicaFormal }, informacionAcademicaFormal);
+            return CreatedAtAction(nameof(GetInfoAcademicaFormal), new { id = informacionAcademicaFormal.Id }, informacionAcademicaFormal);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInformacionAcademicaFormal(int id, InformacionAcademicaFormal informacionAcademicaFormal)
         {
-            if (id != informacionAcademicaFormal.IdInformacionAcademicaFormal) return BadRequest();
+            if (id != informacionAcademicaFormal.Id) return BadRequest();
             _context.Entry(informacionAcademicaFormal).State = EntityState.Modified;
             try
             {
@@ -65,6 +65,6 @@ namespace ADISC3Api.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
-        private bool BuscarInformacionAcademicaFormal(int id) { return _context.InformacionAcademicaFormal.Any(info => id == info.IdInformacionAcademicaFormal); }
+        private bool BuscarInformacionAcademicaFormal(int id) { return _context.InformacionAcademicaFormal.Any(info => id == info.Id); }
     }
 }

@@ -26,9 +26,9 @@ namespace ADISC3Api.Controllers
         [HttpPost]
         public async Task<ActionResult<InformacionPersonal>> Login(Login login)
         {           
-            var cedula = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
-            var contra = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena);           
-            if (cedula && contra) 
+            var ced = await _context.Login.AnyAsync(x => x.Cedula == login.Cedula);
+            var con = await _context.Login.AnyAsync(x => x.Contrasena == login.Contrasena);           
+            if (ced && con) 
             {               
                 return NoContent();
             }
@@ -57,7 +57,7 @@ namespace ADISC3Api.Controllers
             _context.InformacionPersonal.Add(informacionPersonal);
             _context.Login.Add(login);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(getInformacionPersonal), new { id = informacionPersonal.IdInfoPersonal }, informacionPersonal);
+            return CreatedAtAction(nameof(getInformacionPersonal), new { id = informacionPersonal.Id }, informacionPersonal);
         }
 
         //GET BY ID INFORMACION PERSONAL
@@ -72,7 +72,7 @@ namespace ADISC3Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutInformacionPersonal(int id, InformacionPersonal informacionPersonal)
         {
-            if (id != informacionPersonal.IdInfoPersonal) return BadRequest();
+            if (id != informacionPersonal.Id) return BadRequest();
             _context.Entry(informacionPersonal).State = EntityState.Modified;
             try
             {
@@ -96,13 +96,14 @@ namespace ADISC3Api.Controllers
         public async Task<IActionResult> DeleteInformacionPersonal(int id)
         {
             var Info = await _context.InformacionPersonal.FindAsync(id);
+            var Login = await _context.Login.FindAsync(id);
             if (Info == null) return NotFound();
             _context.InformacionPersonal.Remove(Info);
+            _context.Login.Remove(Login);
             await _context.SaveChangesAsync();
             return NoContent();
         }
-
-        private bool BuscaInfoPersonal(int id) { return _context.InformacionPersonal.Any(info => id == info.IdInfoPersonal); }
+        private bool BuscaInfoPersonal(int id) { return _context.InformacionPersonal.Any(info => id == info.Id); }
     }
 }
 //[Route("GetSpecific")]//Controller dentro de controller, con la routa se define

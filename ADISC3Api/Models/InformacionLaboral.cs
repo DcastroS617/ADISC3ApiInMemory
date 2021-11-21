@@ -23,6 +23,9 @@ namespace ADISC3Api.Models
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Final")]
         public DateTime FechaFinal { get; set; }
+
+        public int InformacionPersonalId { get; set; }
+        public virtual InformacionPersonal InformacionPersonal { get; set; }
         public InformacionLaboral() 
         {
 

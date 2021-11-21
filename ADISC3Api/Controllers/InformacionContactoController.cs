@@ -38,7 +38,7 @@ namespace ADISC3Api.Controllers
         [HttpPost]
         public async Task<ActionResult<InformacionContacto>> PostInformacionContacto(InformacionContacto informacionContacto)
         {
-            //informacionContacto.Email = "PerroKreisi@gmail.com"; si funciona!!!!!!bhdjhjosadjihasdipojbsafojunjer
+            
             _context.InformacionContacto.Add(informacionContacto);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetInformacionContacto), new { id = informacionContacto.IdInfoContacto }, informacionContacto);
