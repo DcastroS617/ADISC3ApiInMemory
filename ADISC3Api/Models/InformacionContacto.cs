@@ -1,18 +1,6 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ADISC3Api.Models
 {
@@ -58,6 +46,7 @@ namespace ADISC3Api.Models
         [StringLength(maximumLength: 25, ErrorMessage = "Se necesita un minimo de 3 y maximo de 25 carácteres", MinimumLength = 3)]
         [Display(Name = "Contacto Emergencia")]
         public string ContactoEmergenciaNombre { get; set; }
+
         public InformacionContacto() 
         {
 

@@ -21,7 +21,7 @@ namespace ADISC3Api.Migrations
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaComplementaria", b =>
                 {
-                    b.Property<int>("IdInformacionAcademicaComp")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -34,19 +34,24 @@ namespace ADISC3Api.Migrations
                     b.Property<DateTime>("FechaGraduacion")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InformacionPersonalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Institucion")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("IdInformacionAcademicaComp");
+                    b.HasKey("Id");
+
+                    b.HasIndex("InformacionPersonalId");
 
                     b.ToTable("InformacionAcademicaComplementaria");
                 });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaFormal", b =>
                 {
-                    b.Property<int>("IdInformacionAcademicaFormal")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -59,19 +64,24 @@ namespace ADISC3Api.Migrations
                     b.Property<DateTime>("FechaGraduacion")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InformacionPersonalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Institucion")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
 
-                    b.HasKey("IdInformacionAcademicaFormal");
+                    b.HasKey("Id");
+
+                    b.HasIndex("InformacionPersonalId");
 
                     b.ToTable("InformacionAcademicaFormal");
                 });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaIdioma", b =>
                 {
-                    b.Property<int>("IdInformacionAcademicaIdioma")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -81,12 +91,17 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<int>("InformacionPersonalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nivel")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.HasKey("IdInformacionAcademicaIdioma");
+                    b.HasKey("Id");
+
+                    b.HasIndex("InformacionPersonalId");
 
                     b.ToTable("InformacionAcademicaIdioma");
                 });
@@ -180,6 +195,9 @@ namespace ADISC3Api.Migrations
                     b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("InformacionPersonalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Institucion")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -187,12 +205,14 @@ namespace ADISC3Api.Migrations
 
                     b.HasKey("IdInfoLaboral");
 
+                    b.HasIndex("InformacionPersonalId");
+
                     b.ToTable("InformacionLaboral");
                 });
 
             modelBuilder.Entity("ADISC3Api.Models.InformacionPersonal", b =>
                 {
-                    b.Property<int>("IdInfoPersonal")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -250,7 +270,7 @@ namespace ADISC3Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("IdInfoPersonal");
+                    b.HasKey("Id");
 
                     b.ToTable("InformacionPersonal");
                 });
@@ -275,6 +295,61 @@ namespace ADISC3Api.Migrations
                     b.HasKey("IdLogin");
 
                     b.ToTable("Login");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaComplementaria", b =>
+                {
+                    b.HasOne("ADISC3Api.Models.InformacionPersonal", "InformacionPersonal")
+                        .WithMany("AcademicaComplementaria")
+                        .HasForeignKey("InformacionPersonalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InformacionPersonal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaFormal", b =>
+                {
+                    b.HasOne("ADISC3Api.Models.InformacionPersonal", "InformacionPersonal")
+                        .WithMany("InformacionAcademicaFormal")
+                        .HasForeignKey("InformacionPersonalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InformacionPersonal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionAcademicaIdioma", b =>
+                {
+                    b.HasOne("ADISC3Api.Models.InformacionPersonal", "InformacionPersonal")
+                        .WithMany("InformacionAcademicaIdioma")
+                        .HasForeignKey("InformacionPersonalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InformacionPersonal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionLaboral", b =>
+                {
+                    b.HasOne("ADISC3Api.Models.InformacionPersonal", "InformacionPersonal")
+                        .WithMany("InformacionLaboral")
+                        .HasForeignKey("InformacionPersonalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("InformacionPersonal");
+                });
+
+            modelBuilder.Entity("ADISC3Api.Models.InformacionPersonal", b =>
+                {
+                    b.Navigation("AcademicaComplementaria");
+
+                    b.Navigation("InformacionAcademicaFormal");
+
+                    b.Navigation("InformacionAcademicaIdioma");
+
+                    b.Navigation("InformacionLaboral");
                 });
 #pragma warning restore 612, 618
         }

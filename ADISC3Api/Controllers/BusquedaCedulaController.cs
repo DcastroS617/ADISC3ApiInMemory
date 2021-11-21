@@ -31,11 +31,12 @@ namespace ADISC3Api.Controllers
             {
                 if (i.Cedula == cedula)
                 {
-                    var SendIt = await _context.InformacionPersonal.FindAsync(i.IdInfoPersonal);
+                    var SendIt = await _context.InformacionPersonal.FindAsync(i.Id);
                     return Ok(SendIt);
                 }
             }
             return NotFound();
         }
     }
+    
 }

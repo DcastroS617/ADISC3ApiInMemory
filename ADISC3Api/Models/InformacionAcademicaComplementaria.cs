@@ -9,7 +9,7 @@ namespace ADISC3Api.Models
     {
         public InformacionAcademicaComplementaria() { }
         [Key]
-        public int IdInformacionAcademicaComp { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Se debe introducir el nombre de la institución")]
         [StringLength(maximumLength: 30, ErrorMessage = "Se necesita un minimo de 3 y maximo de 30 carácteres", MinimumLength = 3)]
@@ -25,8 +25,9 @@ namespace ADISC3Api.Models
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Graduación")]
         public DateTime FechaGraduacion { get; set; }
+        public int InformacionPersonalId { get; set; }
 
-
+        public virtual InformacionPersonal InformacionPersonal { get; set; }
         
         
     }

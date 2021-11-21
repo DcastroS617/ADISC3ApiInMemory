@@ -18,7 +18,7 @@ namespace ADISC3Api.Models
     public class InformacionPersonal
     {
         [Key]
-        public int IdInfoPersonal { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Se debe introducir el nombre")]
         [StringLength(maximumLength: 50, ErrorMessage = "Se necesita un minimo de 3 y maximo de 50 carácteres", MinimumLength = 3)]
@@ -75,6 +75,11 @@ namespace ADISC3Api.Models
         [DataType(DataType.Password)]
         [Display(Name = "Contraseña")]
         public string Contrasena { get; set; }
+
+        public virtual ICollection<InformacionAcademicaIdioma> InformacionAcademicaIdioma { get; set; }
+        public virtual ICollection<InformacionAcademicaFormal> InformacionAcademicaFormal { get; set; }
+        public virtual ICollection<InformacionAcademicaComplementaria> AcademicaComplementaria { get; set; }
+        public virtual ICollection<InformacionLaboral> InformacionLaboral { get; set; }
         public InformacionPersonal() { }
     }
 }
