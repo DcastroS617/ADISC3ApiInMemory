@@ -43,7 +43,7 @@ namespace ADISC3Api.Models
         public string ContactoEmergencia { get; set; }
 
         [Required(ErrorMessage = "Se debe introducir el teléfono del lugar donde trabaja")]
-        [StringLength(maximumLength: 25, ErrorMessage = "Se necesita un minimo de 3 y maximo de 25 carácteres", MinimumLength = 3)]
+        [StringLength(maximumLength: 25, ErrorMessage = "Se necesita un minimo de 3 y maximo de 25 carácteres", MinimumLength = 1)]
         [Display(Name = "Contacto Emergencia")]
         public string ContactoEmergenciaNombre { get; set; }
 
