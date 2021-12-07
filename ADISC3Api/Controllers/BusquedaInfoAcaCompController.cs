@@ -35,8 +35,6 @@ namespace ADISC3Api
                 }
             }
             return NotFound();
-            //;
-
         }
     }
 }

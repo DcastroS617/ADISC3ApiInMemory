@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-
 using System;
 using System.ComponentModel.DataAnnotations;
 
